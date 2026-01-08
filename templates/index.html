@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Generator | Automated Spatial Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar / Control Panel -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-layer-group"></i>
+                <h1>LayoutGen</h1>
+            </div>
+            
+            <div class="panel info-panel">
+                <h2>Project Overview</h2>
+                <p>Automated building layout generator on a 200m x 140m site.</p>
+                <div class="site-dimensions">
+                    <span><i class="fa-solid fa-ruler-horizontal"></i> 200m</span>
+                    <span><i class="fa-solid fa-ruler-vertical"></i> 140m</span>
+                </div>
+            </div>
+
+            <div class="panel rules-panel">
+                <h2>Core Rules</h2>
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> Site Containment</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 15m Separation</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 10m Boundary Setback</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Neighbour-Mix (A+B &lt; 60m)</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 40m Central Plaza</li>
+                </ul>
+            </div>
+
+            <div class="action-area">
+                <button id="generateBtn" class="primary-btn">
+                    <span class="btn-text">Generate New Layouts</span>
+                    <span class="loader"></span>
+                </button>
+            </div>
+            
+            <footer class="sidebar-footer">
+                <p>Designed for Automated Architecture</p>
+            </footer>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="layout-selector">
+                    <span>Viewing Layout:</span>
+                    <div id="layoutPagination" class="pagination">
+                        <!-- Buttons injected via JS -->
+                        <span class="placeholder-text">Generate to start</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="visualization-wrapper">
+                <div class="canvas-container">
+                    <canvas id="siteCanvas" width="800" height="560"></canvas>
+                    <!-- Tooltip -->
+                    <div id="tooltip" class="tooltip hidden"></div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="color-box tower-a"></span>
+                        <span>Tower A (30x20)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box tower-b"></span>
+                        <span>Tower B (20x20)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box plaza"></span>
+                        <span>Central Plaza (40x40)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box setback"></span>
+                        <span>Setback (10m)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar" id="statsBar">
+                <div class="stat-card">
+                    <h3>Tower A</h3>
+                    <p id="statTowerA">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Tower B</h3>
+                    <p id="statTowerB">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Built Area</h3>
+                    <p id="statArea">- m²</p>
+                </div>
+                <div class="stat-card validation-card">
+                    <h3>Status</h3>
+                    <p id="statStatus" class="status-valid">Waiting</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
